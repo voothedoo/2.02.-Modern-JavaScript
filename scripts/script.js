@@ -1,9 +1,5 @@
 import { API } from "./config.js";
 
-const buttonElement = document.querySelector('#submit-search');
-const inputField = document.querySelector('#city-name');
-const cityNameContainer = document.querySelector('.city-info');
-
 const createContainer = (data) => {
 	for (let i = 0; i < 5; i++) {
 		const div = document.querySelector('.container');
@@ -72,20 +68,17 @@ const createContainer = (data) => {
 		minMax.appendChild(maxT);
 	}
 };
-
 const removeContainer = () => {
 	const container = document.querySelector(".container");
 	while (container.lastChild) {
 		container.removeChild(container.lastChild);
 	};
 };
-
 const getData = async () => {
-	const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API.key}&q=${inputField.value}&days=7&aqi=no&alerts=no`);
+	const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API.key}&q=${document.querySelector('#city-name').value}&days=7&aqi=no&alerts=no`);
 	const data = await response.json();
 	return data;
 };
-
 const startApp = async () => {
 	const data = await getData();
 	if (data.error) {
@@ -94,12 +87,12 @@ const startApp = async () => {
 	removeContainer();
 	createContainer(data);
 
-	cityNameContainer.textContent = data.location.name + ", " + data.location.country;
+	document.querySelector('.city-info').textContent = data.location.name + ", " + data.location.country;
 };
 
-inputField.addEventListener('keyup', (event) => {
+document.querySelector('#city-name').addEventListener('keyup', (event) => {
 	if (event.code === "Enter") {
 		startApp();
 	}
 });
-buttonElement.addEventListener('click', startApp);
+document.querySelector('#submit-search').addEventListener('click', startApp);
