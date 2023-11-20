@@ -1,7 +1,7 @@
 import { API } from "./config.js";
 
 const createContainer = (data, i) => {
-	const div = document.querySelector('.container');
+	const mainContainer = document.querySelector('.container');
 
 	const daysOfTheWeekArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const date = new Date();
@@ -10,7 +10,7 @@ const createContainer = (data, i) => {
 	const card = document.createElement('div');
 	card.classList.add("card");
 	if (i === 0) card.classList.add("main-card");
-	div.appendChild(card);
+	mainContainer.appendChild(card);
 
 	const initialContentBeforeSlideAnimation = document.createElement('div');
 	initialContentBeforeSlideAnimation.classList.add("imgBx");
@@ -65,12 +65,10 @@ const createContainer = (data, i) => {
 	maxT.classList.add("max-temp");
 	maxT.innerHTML = data.forecast.forecastday[i].day.maxtemp_c + "°C";
 	minMax.appendChild(maxT);
-
 };
 const removeContainer = () => {
 	const container = document.querySelector(".container");
 	while (container.lastChild) container.removeChild(container.lastChild);
-
 };
 const getData = async () => {
 	const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API.key}&q=${document.querySelector('#city-name').value}&days=7&aqi=no&alerts=no`);
