@@ -1,13 +1,9 @@
-// Check if script is read by the browser!
-console.log("script is running");
 // import data from different files
-import API from "./config.js";
+import { API } from "./config.js";
 
-// Getting my button element
-const button = document.querySelector('#submit-search');
-// Getting my input field element
-const inputField = document.querySelector('#cityName');
-//getting my container element
+
+const buttonElement = document.querySelector('#submit-search');
+const inputField = document.querySelector('#city-name');
 const cityNameContainer = document.querySelector('.city-info');
 // Weekdays listed in the order used by the Date object in javascript
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -15,9 +11,9 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 // In case I want to switch to a different format:
 const weekdays2 = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 // Check if weekdays are correctly displayed
-console.log(weekdays);
+// console.log(weekdays);
 // check if API is correctly imported
-console.log(API);
+// console.log(API);
 
 // add eventlistener to input field
 inputField.addEventListener('keyup', function (event) {
@@ -159,8 +155,8 @@ inputField.addEventListener('keyup', function (event) {
     }
 });
 
-// add eventlistener to button
-button.addEventListener('click', function () {
+// add eventlistener to buttonElement
+buttonElement.addEventListener('click', function () {
     const theNameOfTheCity = document.querySelector("#cityName").value;
     console.log("clicked");
     fetch("http://api.weatherapi.com/v1/forecast.json?key=" + API.key + "&q=" + theNameOfTheCity + "&days=7&aqi=no&alerts=no")
