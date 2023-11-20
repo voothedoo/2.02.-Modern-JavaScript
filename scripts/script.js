@@ -13,7 +13,7 @@ async function startWeatherApp() {
 	fetch("http://api.weatherapi.com/v1/forecast.json?key=" + API.key + "&q=" + inputField.value + "&days=7&aqi=no&alerts=no")
 		.then(response => response.json())
 		.then(data => {
-
+			console.log(data);
 			if (data.error) {
 				return alert("Hey are you sure you are not holding up your map upside down?");
 			}
@@ -28,17 +28,11 @@ async function startWeatherApp() {
 			cityNameContainer.textContent = data.location.name + ", " + data.location.country;
 
 			// Create cards for each days (first 5 days) of the week.
-			// if I want to have 7 days, I just need to augment the number in the loop condition from 5 to 7
 			for (let i = 0; i < 5; i++) {
-
-				// get the container again for add the cards
 				const div = document.querySelector('.container');
 
-				// d = date
-				const d = new Date();
-				// console.log(weekdays[(d.getDay() + i) % 7])
-				// dow = dateOfWeek
-				const dow = weekdays[(d.getDay() + i) % 7];
+				const date = new Date();
+				const weekDays = weekdays[(date.getDay() + i) % 7];
 
 				// Create the elements with Data
 				const card = document.createElement('div');
@@ -67,7 +61,7 @@ async function startWeatherApp() {
 				card.appendChild(contentBox);
 
 				const dowContentBeforeSliderAnimation = document.createElement("h2");
-				dowContentBeforeSliderAnimation.innerHTML = dow;
+				dowContentBeforeSliderAnimation.innerHTML = weekDays;
 				contentBox.appendChild(dowContentBeforeSliderAnimation);
 
 				console.log(data.forecast.forecastday[i].day.condition.text);
@@ -115,14 +109,12 @@ async function startWeatherApp() {
 		});
 }
 
-// add eventlistener to input field
 inputField.addEventListener('keyup', (event) => {
 	if (event.code === "Enter") {
 		startWeatherApp();
 	}
 });
 
-// add eventlistener to buttonElement
 buttonElement.addEventListener('click', startWeatherApp);
 
 // This is a weather web application made for educational purposes. Please do not commercialize this project in any way whatsoever.
