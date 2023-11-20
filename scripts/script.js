@@ -1,24 +1,17 @@
 // import data from different files
 import { API } from "./config.js";
 
-
 const buttonElement = document.querySelector('#submit-search');
 const inputField = document.querySelector('#city-name');
 const cityNameContainer = document.querySelector('.city-info');
-// Weekdays listed in the order used by the Date object in javascript
+
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-// In case I want to switch to a different format:
-const weekdays2 = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-// Check if weekdays are correctly displayed
-// console.log(weekdays);
-// check if API is correctly imported
-// console.log(API);
 
 // add eventlistener to input field
 inputField.addEventListener('keyup', function (event) {
     // get the current value after the user submitted the city name
-    const theNameOfTheCity = document.querySelector("#cityName").value;
+    const theNameOfTheCity = document.querySelector("#city-name").value;
 
     // see if event listener is triggered
     console.log("Enter submission");
@@ -27,7 +20,7 @@ inputField.addEventListener('keyup', function (event) {
     if (event.code === "Enter") {
 
         // check if the value of the input field is not empty
-        if (document.getElementById('cityName').value.trim()) {
+        if (document.getElementById('city-name').value.trim()) {
             // Make the api call to get the weather Data based on the City
             fetch("http://api.weatherapi.com/v1/forecast.json?key=" + API.key + "&q=" + theNameOfTheCity + "&days=7&aqi=no&alerts=no")
                 // Transform the response in a readable javascript format
@@ -157,7 +150,7 @@ inputField.addEventListener('keyup', function (event) {
 
 // add eventlistener to buttonElement
 buttonElement.addEventListener('click', function () {
-    const theNameOfTheCity = document.querySelector("#cityName").value;
+    const theNameOfTheCity = document.querySelector("#city-name").value;
     console.log("clicked");
     fetch("http://api.weatherapi.com/v1/forecast.json?key=" + API.key + "&q=" + theNameOfTheCity + "&days=7&aqi=no&alerts=no")
         .then(response => response.json())
