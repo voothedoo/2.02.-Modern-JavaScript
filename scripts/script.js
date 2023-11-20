@@ -1,8 +1,6 @@
 import { API } from "./config.js";
 
 const createContainer = (data, i) => {
-	const mainContainer = document.querySelector('.container');
-
 	const daysOfTheWeekArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const date = new Date();
 	const weekDays = daysOfTheWeekArray[(date.getDay() + i) % 7];
@@ -10,7 +8,7 @@ const createContainer = (data, i) => {
 	const card = document.createElement('div');
 	card.classList.add("card");
 	if (i === 0) card.classList.add("main-card");
-	mainContainer.appendChild(card);
+	document.querySelector('.container').appendChild(card);
 
 	const initialContentBeforeSlideAnimation = document.createElement('div');
 	initialContentBeforeSlideAnimation.classList.add("imgBx");
@@ -77,14 +75,11 @@ const getData = async () => {
 };
 const startApp = async () => {
 	const data = await getData();
-	if (data.error) {
-		return alert("Hey are you sure you are not holding up your map upside down?");
-	}
+	if (data.error) return alert("Hey are you sure you are not holding up your map upside down?");
 
 	removeContainer();
-	for (let i = 0; i < 5; i++) {
-		createContainer(data, i);
-	}
+	for (let i = 0; i < 5; i++) createContainer(data, i);
+
 	document.querySelector('.city-info').textContent = data.location.name + ", " + data.location.country;
 };
 
