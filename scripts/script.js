@@ -8,15 +8,13 @@ const createContainer = (data) => {
 	for (let i = 0; i < 5; i++) {
 		const div = document.querySelector('.container');
 
-		const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+		const daysOfTheWeekArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 		const date = new Date();
-		const weekDays = weekdays[(date.getDay() + i) % 7];
+		const weekDays = daysOfTheWeekArray[(date.getDay() + i) % 7];
 
 		const card = document.createElement('div');
 		card.classList.add("card");
-
 		if (i === 0) card.classList.add("main-card");
-
 		div.appendChild(card);
 
 		const initialContentBeforeSlideAnimation = document.createElement('div');
