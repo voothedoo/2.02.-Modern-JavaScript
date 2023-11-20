@@ -5,7 +5,7 @@ const inputField = document.querySelector('#city-name');
 const cityNameContainer = document.querySelector('.city-info');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-const createContainer = async (data) => {
+const createContainer = (data) => {
 	for (let i = 0; i < 5; i++) {
 		const div = document.querySelector('.container');
 
@@ -75,7 +75,7 @@ const createContainer = async (data) => {
 	}
 };
 
-const removeContainer = async () => {
+const removeContainer = () => {
 	const container = document.querySelector(".container");
 	while (container.lastChild) {
 		container.removeChild(container.lastChild);
@@ -88,7 +88,7 @@ const getData = async () => {
 	return data;
 };
 
-async function startApp() {
+const startApp = async () => {
 	const data = await getData();
 	if (data.error) {
 		return alert("Hey are you sure you are not holding up your map upside down?");
