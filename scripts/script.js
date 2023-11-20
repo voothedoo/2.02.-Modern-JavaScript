@@ -5,7 +5,7 @@ const inputField = document.querySelector('#city-name');
 const cityNameContainer = document.querySelector('.city-info');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-async function createContainer(data) {
+function createContainer(data) {
 	for (let i = 0; i < 5; i++) {
 		const div = document.querySelector('.container');
 
