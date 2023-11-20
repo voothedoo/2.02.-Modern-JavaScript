@@ -63,7 +63,7 @@ const createContainer = (data, i) => {
 	maxT.innerHTML = data.forecast.forecastday[i].day.maxtemp_c + "°C";
 	minMax.appendChild(maxT);
 };
-const removeContainer = () => {
+const emptyContainer = () => {
 	const container = document.querySelector(".container");
 	while (container.lastChild) container.removeChild(container.lastChild);
 };
@@ -76,7 +76,7 @@ const startApp = async () => {
 	const data = await getData();
 	if (data.error) return alert("Hey are you sure you are not holding up your map upside down?");
 
-	removeContainer();
+	emptyContainer();
 	for (let i = 0; i < 5; i++) createContainer(data, i);
 
 	document.querySelector('.city-info').textContent = data.location.name + ", " + data.location.country;
