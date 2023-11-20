@@ -27,7 +27,6 @@ const createContainer = (data, i) => {
 	dowContentBeforeSliderAnimation.innerHTML = weekDays;
 	contentBox.appendChild(dowContentBeforeSliderAnimation);
 
-	console.log(data.forecast.forecastday[i].day.condition.text);
 	const tempDescription = document.createElement("h4");
 	tempDescription.innerHTML = data.forecast.forecastday[i].day.condition.text;
 	contentBox.appendChild(tempDescription);
