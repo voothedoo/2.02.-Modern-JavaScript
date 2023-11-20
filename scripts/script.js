@@ -5,7 +5,7 @@ const inputField = document.querySelector('#city-name');
 const cityNameContainer = document.querySelector('.city-info');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-function createContainer(data) {
+const createContainer = async (data) => {
 	for (let i = 0; i < 5; i++) {
 		const div = document.querySelector('.container');
 
@@ -75,18 +75,18 @@ function createContainer(data) {
 	}
 };
 
-const removeContainer = () => {
+const removeContainer = async () => {
 	const container = document.querySelector(".container");
 	while (container.lastChild) {
 		container.removeChild(container.lastChild);
 	};
 };
 
-async function getData() {
+const getData = async () => {
 	const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API.key}&q=${inputField.value}&days=7&aqi=no&alerts=no`);
 	const data = await response.json();
 	return data;
-}
+};
 
 async function startApp() {
 	const data = await getData();
