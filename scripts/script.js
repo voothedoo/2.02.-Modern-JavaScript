@@ -69,9 +69,8 @@ const createContainer = (data, i) => {
 };
 const removeContainer = () => {
 	const container = document.querySelector(".container");
-	while (container.lastChild) {
-		container.removeChild(container.lastChild);
-	};
+	while (container.lastChild) container.removeChild(container.lastChild);
+
 };
 const getData = async () => {
 	const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API.key}&q=${document.querySelector('#city-name').value}&days=7&aqi=no&alerts=no`);
@@ -83,6 +82,7 @@ const startApp = async () => {
 	if (data.error) {
 		return alert("Hey are you sure you are not holding up your map upside down?");
 	}
+
 	removeContainer();
 	for (let i = 0; i < 5; i++) {
 		createContainer(data, i);
