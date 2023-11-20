@@ -125,7 +125,7 @@ async function startWeatherApp() {
 }
 
 // add eventlistener to input field
-inputField.addEventListener('keyup', function (event) {
+inputField.addEventListener('keyup', (event) => {
 	if (event.code === "Enter") {
 		startWeatherApp();
 	}
